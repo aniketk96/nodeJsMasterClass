@@ -6,6 +6,7 @@
 */
 
 //Dependencies
+const config=require('./config')
 const http=require('http')
 const url=require('url')
 const stringDecoder=require('string_decoder').StringDecoder
@@ -54,6 +55,7 @@ const server=http.createServer((req,res)=>{
 
       var payloadToString=JSON.stringify(payload)
       
+      res.setHeader('Content-type','application/json')
       res.writeHead(statusCode)
       res.end(payloadToString)
     
@@ -66,8 +68,8 @@ const server=http.createServer((req,res)=>{
 })
 
 //server listen on
-server.listen(3000,()=>{
-   console.log("Listening on port 3000!")
+server.listen(config.port,()=>{
+   console.log("Listening on port "+config.port+"!")
 })
 
 //define the handler for every request
