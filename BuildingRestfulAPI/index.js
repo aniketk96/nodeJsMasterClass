@@ -11,9 +11,20 @@ const http=require('http')
 const url=require('url')
 const stringDecoder=require('string_decoder').StringDecoder
 
+
 //creating a server
 const server=http.createServer((req,res)=>{
-  //parse the url query
+ unifiedServer(req,res)
+
+})
+
+//server listen on
+server.listen(config.port,()=>{
+   console.log("Listening on port "+config.port+"!")
+})
+
+var unifiedServer=(req,res)=>{
+     //parse the url query
   const parseUrl=url.parse(req.url,true)
 
   //get the path
@@ -63,21 +74,14 @@ const server=http.createServer((req,res)=>{
    })
 
   })
-
-
-})
-
-//server listen on
-server.listen(config.port,()=>{
-   console.log("Listening on port "+config.port+"!")
-})
+}
 
 //define the handler for every request
 var handler={}
 
-handler.sample=function(data,callback){
+handler.ping=function(data,callback){
 //set a callback with payload, and should be an object
-callback(406,{'name':'Sample handler'})
+callback(200)
 }
 
 handler.notFound=function(data,callback){
@@ -86,5 +90,5 @@ callback(404)
 
 //define a router for requests.
 var routers={
-   'sample':handler.sample
+   'ping':handler.sample
 }
