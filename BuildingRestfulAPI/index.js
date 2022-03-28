@@ -10,6 +10,13 @@ const config=require('./config')
 const http=require('http')
 const url=require('url')
 const stringDecoder=require('string_decoder').StringDecoder
+const {lib}=require('./lib/data')
+
+
+//testing
+lib.crear('test','newFile',{'name':'Aniket'},(err)=>{
+  console.log(err)
+})
 
 
 //creating a server
