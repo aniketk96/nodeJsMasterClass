@@ -90,5 +90,6 @@ callback(404)
 
 //define a router for requests.
 var routers={
-   'ping':handler.sample
+   'ping':handler.sample,
+   '*':handler.notFound
 }
